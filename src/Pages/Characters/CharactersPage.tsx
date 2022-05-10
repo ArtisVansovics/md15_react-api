@@ -3,11 +3,13 @@ import axios from 'axios';
 import { Character } from '../../Models/CharacterModel';
 import Button from '../../components/Button/Button';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
+import Loader from '../../components/Loader/Loader';
 
 const CharactersPage = () => {
   const [characters, setCharacters] = useState<Character[]>();
-  const [errorMessage, setErrorMessage] = useState<string>();
   const [filteredCharacters, setFilteredCharacters] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const buttons = [
     {
@@ -33,6 +35,7 @@ const CharactersPage = () => {
   ];
 
   const getCharacters = async () => {
+    setLoading(true);
     try {
       const response = await axios.get(`https://rickandmortyapi.com/api/character/${filteredCharacters}`);
       setCharacters(response.data.results);
@@ -44,7 +47,7 @@ const CharactersPage = () => {
         setErrorMessage('Not Axios error');
       }
     } finally {
-      console.log('END');
+      setLoading(false);
     }
   };
 
@@ -72,6 +75,7 @@ const CharactersPage = () => {
         <div className="row">
           <div className="col-xs-12">
             <div className="box">
+              {loading && <Loader />}
               <div className="grid-container">
                 {characters && characters.map((
                   {
