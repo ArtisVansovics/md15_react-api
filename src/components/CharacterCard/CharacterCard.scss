@@ -1,0 +1,23 @@
+.character-card {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 16px;
+  background-color: #06ADBF;
+  border-radius: 10px;
+  padding: 30px 20px 20px;
+  box-shadow: #C7D941 6px -4px;
+}
+
+.character-card__title {
+  color: #C7D941;
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.character-card__img {
+  width: 50%;
+  border-radius: 50%;
+  border: 4px solid #F2B199;
+}
