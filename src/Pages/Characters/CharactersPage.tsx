@@ -1,7 +1,9 @@
 import React from 'react';
 
 const CharactersPage = () => (
-  <div />
+  <div>
+    Characters
+  </div>
 );
 
 export default CharactersPage;

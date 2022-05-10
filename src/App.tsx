@@ -10,17 +10,50 @@ import EpisodePage from './Pages/Episode/EpisodePage';
 import EpisodesPage from './Pages/Episodes/EpisodesPage';
 import LocationPage from './Pages/Loaction/LocationPage';
 import LocationsPage from './Pages/Locations/LocationsPage';
+import Page404 from './Pages/404/Page404';
 
 const App = () => (
-  <div className="App">
-    <div className="container">
-      <div className="row">
-        <div className="col-xs-12">
-          <div className="box" />
-        </div>
-      </div>
-    </div>
-  </div>
+  <Router>
+    <Header />
+    <Routes>
+      <Route
+        path="/"
+        element={<CharactersPage />}
+      />
+      <Route
+        path="/characters"
+        element={<CharactersPage />}
+      />
+      <Route
+        path="/characters/:id"
+        element={<CharacterPage />}
+      />
+      <Route
+        path="/episodes"
+        element={<EpisodesPage />}
+      />
+      <Route
+        path="/episodes/:id"
+        element={<EpisodePage />}
+      />
+      <Route
+        path="/locations"
+        element={<LocationsPage />}
+      />
+      <Route
+        path="/locations/:id"
+        element={<LocationPage />}
+      />
+      <Route
+        path="404"
+        element={<Page404 />}
+      />
+      <Route
+        path="*"
+        element={<Navigate to="/404" />}
+      />
+    </Routes>
+  </Router>
 );
 
 export default App;

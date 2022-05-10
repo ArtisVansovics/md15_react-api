@@ -1,7 +1,9 @@
 import React from 'react';
 
 const LocationsPage = () => (
-  <div />
+  <div>
+    Locations
+  </div>
 );
 
 export default LocationsPage;
