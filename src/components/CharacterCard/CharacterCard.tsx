@@ -7,17 +7,20 @@ type CharacterCardProps = {
   id: number;
   name: string;
   image: string;
+  status: string;
 }
 
 const CharacterCard:FC<CharacterCardProps> = (
   {
-    id, name, image,
+    id, name, image, status,
   },
 ) => {
   const navigate = useNavigate();
 
   return (
-    <div className="character-card">
+    <div
+      className={`character-card ${status.toLowerCase()}`}
+    >
       <img
         className="character-card__img"
         src={image}
