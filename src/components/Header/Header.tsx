@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './Header.scss';
 
 const getActiveClassName = (isActive: boolean) => (
   isActive ? 'nav__link nav__link--active' : 'nav__link'
@@ -27,6 +28,9 @@ const Header = () => (
         Locations
       </NavLink>
     </nav>
+    <h1 className="header__title">
+      The Rick And Morty Page
+    </h1>
   </header>
 );
 
