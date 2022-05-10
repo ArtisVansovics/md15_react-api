@@ -1,9 +1,7 @@
 import React from 'react';
 
 const EpisodesPage = () => (
-  <div>
-    Episodes
-  </div>
+  <div className="page" />
 );
 
 export default EpisodesPage;

@@ -23,3 +23,13 @@
   gap: 20px;
   width: 100%;
 }
+
+.page {
+  display: flex;
+  flex-flow: column;
+  gap: 32px;
+  min-height: 100vh;
+  background-color: #287499;
+  color: #D99C52;
+  padding: 20px;
+}
