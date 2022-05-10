@@ -2,12 +2,17 @@ import React, { FC } from 'react';
 import './Button.scss';
 
 type ButtonProps = {
-  title: string
-  onClick: () => void
+  title: string;
+  bgColor: string;
+  onClick: () => void;
 }
 
-const Button:FC<ButtonProps> = ({ title, onClick }) => (
-  <button className="button" onClick={onClick}>
+const Button:FC<ButtonProps> = ({ title, bgColor, onClick }) => (
+  <button
+    className="button"
+    style={{ backgroundColor: bgColor }}
+    onClick={onClick}
+  >
     {title}
   </button>
 );

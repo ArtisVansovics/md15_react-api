@@ -2,19 +2,19 @@
   flex-flow: column;
   justify-content: center;
   align-content: center;
-  padding: 10px 15px;
-  border-radius: 10px;
+  padding: 10px 30px;
+  border-radius: 25px;
   cursor: pointer;
   user-select: none;
   border: none;
-  background-color: #F2D57E;
-  color: #0C4459;
+  color: #2B3A8C;
+  text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.5px;
-  transition: background-color 1s;
+  transition: opacity 1s;
 
   &:hover {
-    background-color: #031226;
-    color: #F2D57E;
+    opacity: 0.8;
+    outline: 3px solid #2B3A8C;
   }
 }
