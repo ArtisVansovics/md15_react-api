@@ -4,36 +4,37 @@ import { Character } from '../../Models/CharacterModel';
 import Button from '../../components/Button/Button';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
 
-const buttons = [
-  {
-    title: 'All',
-    bgColor: '#11AEBF',
-    onClick: () => console.log('1'),
-  },
-  {
-    title: 'Alive',
-    bgColor: '#BFD962',
-    onClick: () => console.log('1'),
-  },
-  {
-    title: 'Dead',
-    bgColor: '#D94E4E',
-    onClick: () => console.log('1'),
-  },
-  {
-    title: 'Unknown',
-    bgColor: '#BFB378',
-    onClick: () => console.log('1'),
-  },
-];
-
 const CharactersPage = () => {
   const [characters, setCharacters] = useState<Character[]>();
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [filteredCharacters, setFilteredCharacters] = useState<string>('');
+
+  const buttons = [
+    {
+      title: 'All',
+      bgColor: '#11AEBF',
+      onClick: () => setFilteredCharacters(''),
+    },
+    {
+      title: 'Alive',
+      bgColor: '#BFD962',
+      onClick: () => setFilteredCharacters('?status=alive'),
+    },
+    {
+      title: 'Dead',
+      bgColor: '#D94E4E',
+      onClick: () => setFilteredCharacters('?status=dead'),
+    },
+    {
+      title: 'Unknown',
+      bgColor: '#BFB378',
+      onClick: () => setFilteredCharacters('?status=unknown'),
+    },
+  ];
 
   const getCharacters = async () => {
     try {
-      const response = await axios.get('https://rickandmortyapi.com/api/character');
+      const response = await axios.get(`https://rickandmortyapi.com/api/character/${filteredCharacters}`);
       setCharacters(response.data.results);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -49,7 +50,7 @@ const CharactersPage = () => {
 
   useEffect(() => {
     getCharacters().then();
-  }, []);
+  }, [filteredCharacters]);
 
   return (
     <div className="page">
