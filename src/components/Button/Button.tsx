@@ -5,13 +5,17 @@ type ButtonProps = {
   title: string;
   bgColor: string;
   onClick: () => void;
+  disabled?: boolean | undefined;
 }
 
-const Button:FC<ButtonProps> = ({ title, bgColor, onClick }) => (
+const Button:FC<ButtonProps> = ({
+  title, bgColor, onClick, disabled,
+}) => (
   <button
     className="button"
     style={{ backgroundColor: bgColor }}
     onClick={onClick}
+    disabled={disabled}
   >
     {title}
   </button>

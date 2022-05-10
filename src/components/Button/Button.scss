@@ -18,3 +18,13 @@
     outline: 3px solid #2B3A8C;
   }
 }
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+
+  &:hover {
+    opacity: 0.5;
+    outline: none;
+  }
+}
