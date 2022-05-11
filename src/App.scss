@@ -57,3 +57,19 @@
 .img{
   border-radius: 20px;
 }
+
+.search-form {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 20px;
+}
+
+.search-form__input {
+  border-radius: 5px;
+  background-color: #D99C52;
+  color: #2B3A8C;
+  font-size: 20px;
+  box-shadow: none;
+  outline: 3px solid #F2B199;
+  border: none;
+}

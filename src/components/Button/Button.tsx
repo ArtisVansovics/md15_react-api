@@ -4,7 +4,7 @@ import './Button.scss';
 type ButtonProps = {
   title: string;
   bgColor: string;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean | undefined;
 }
 
