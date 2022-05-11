@@ -45,13 +45,13 @@ const CharacterPage = () => {
     <div className="page">
       {character && (
         <div className="container">
-          <div className="row">
-            <div className="col-xs-12 col-md-4">
+          <div className="row center-xs">
+            <div className="col-xs-12 col-md-6">
               <div className="box">
                 <PageTitle title={character.name} />
               </div>
             </div>
-            <div className="col-xs-6 col-md-4 first-md">
+            <div className="col-xs-6 col-md-3 first-md">
               <div className="box box--stretch">
                 <Button
                   title="Previous Character"
@@ -61,7 +61,7 @@ const CharacterPage = () => {
                 />
               </div>
             </div>
-            <div className="col-xs-6 col-md-4">
+            <div className="col-xs-6 col-md-3">
               <div className="box box--stretch">
                 <Button
                   title="Next Character"

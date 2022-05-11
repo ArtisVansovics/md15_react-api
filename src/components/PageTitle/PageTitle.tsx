@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import './PageTitle.scss';
 
 type PageTitleProps = {
-  title?: string;
+  title: string;
 }
 
 const PageTitle:FC<PageTitleProps> = ({ title }) => (
