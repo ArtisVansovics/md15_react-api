@@ -54,7 +54,11 @@
   width: 100%;
 }
 
-.img{
+.grid-container--wide-columns {
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+}
+
+.img {
   border-radius: 20px;
 }
 

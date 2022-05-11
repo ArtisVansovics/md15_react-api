@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Episode } from '../../Models/EpisodeModel';
 import Button from '../../components/Button/Button';
 import Loader from '../../components/Loader/Loader';
+import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
 
 const EpisodesPage = () => {
   const [episodes, setEpisodes] = useState<Episode[]>();
@@ -80,6 +81,20 @@ const EpisodesPage = () => {
           <div className="col-xs-12">
             <div className="box">
               {loading && <Loader />}
+              <div className="grid-container grid-container--wide-columns">
+                {episodes && episodes.map((
+                  {
+                    id, name, episode,
+                  },
+                ) => (
+                  <EpisodeCard
+                    key={id}
+                    id={id}
+                    name={name}
+                    episode={episode}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
