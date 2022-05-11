@@ -1,0 +1,25 @@
+.location-card {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 10px;
+  background-color: #798C35;
+  border-radius: 25px;
+  padding: 20px 25px;
+  outline: 3px solid #F2B199;
+}
+
+.location-card__title {
+  color: #F2B199;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+}
+
+.location-card__sub-title {
+  color: #BFD962;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+}

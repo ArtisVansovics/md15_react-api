@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.scss';
 import {
-  BrowserRouter as Router, Route, Routes, NavLink, Navigate,
+  BrowserRouter as Router, Route, Routes, Navigate,
 } from 'react-router-dom';
 import Header from './components/Header/Header';
 import CharacterPage from './Pages/Character/CharacterPage';
 import CharactersPage from './Pages/Characters/CharactersPage';
 import EpisodePage from './Pages/Episode/EpisodePage';
 import EpisodesPage from './Pages/Episodes/EpisodesPage';
-import LocationPage from './Pages/Loaction/LocationPage';
+import LocationPage from './Pages/Location/LocationPage';
 import LocationsPage from './Pages/Locations/LocationsPage';
 import Page404 from './Pages/404/Page404';
 

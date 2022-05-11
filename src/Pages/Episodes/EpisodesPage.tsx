@@ -43,8 +43,7 @@ const EpisodesPage = () => {
       searchRef.current.focus();
     }
   });
-  console.log(episodes);
-  console.log(searchValue);
+
   return (
     <div className="page">
       <div className="container">
