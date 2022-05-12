@@ -78,3 +78,32 @@
   border: none;
   padding: 5px 10px;
 }
+
+.pagination {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.pagination__item {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  font-size: 20px;
+  color: #2B3A8C;
+  border: none;
+  padding: 5px;
+  background-color: #D99C52;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+
+  &:hover {
+    outline: 3px solid #2B3A8C;
+  }
+}
