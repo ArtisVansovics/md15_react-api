@@ -14,7 +14,8 @@ const CharactersPage = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageCount, setPageCount] = useState<number>();
-  // const [visiblePages, setVisiblePages] = useState<number[]>();
+  const [minPage, setMinPage] = useState<number>(1);
+  const [maxPage, setMaxPage] = useState<number>(10);
 
   const buttons = [
     {
@@ -23,6 +24,8 @@ const CharactersPage = () => {
       onClick: () => {
         setFilteredCharacters('');
         setCurrentPage(1);
+        setMinPage(1);
+        setMaxPage(10);
       },
     },
     {
@@ -31,6 +34,8 @@ const CharactersPage = () => {
       onClick: () => {
         setFilteredCharacters('alive');
         setCurrentPage(1);
+        setMinPage(1);
+        setMaxPage(10);
       },
     },
     {
@@ -39,6 +44,8 @@ const CharactersPage = () => {
       onClick: () => {
         setFilteredCharacters('dead');
         setCurrentPage(1);
+        setMinPage(1);
+        setMaxPage(10);
       },
     },
     {
@@ -47,6 +54,8 @@ const CharactersPage = () => {
       onClick: () => {
         setFilteredCharacters('unknown');
         setCurrentPage(1);
+        setMinPage(1);
+        setMaxPage(10);
       },
     },
   ];
@@ -99,26 +108,46 @@ const CharactersPage = () => {
             <div className="box">
               {info && (
                 <div className="pagination">
-                  {pages.map((page) => (
-                    page === currentPage ? (
-                      <button
-                        key={page}
-                        className="pagination__item"
-                        onClick={() => setCurrentPage(page)}
-                        style={{ outline: '4px solid #BFD962' }}
-                      >
-                        {page}
-                      </button>
-                    ) : (
-                      <button
-                        key={page}
-                        className="pagination__item"
-                        onClick={() => setCurrentPage(page)}
-                      >
-                        {page}
-                      </button>
-                    )
-                  ))}
+                  <Button
+                    title="Prev"
+                    bgColor="#D99C52"
+                    onClick={() => {
+                      setMinPage(minPage - 10);
+                      setMaxPage(maxPage - 10);
+                    }}
+                    disabled={minPage < 10}
+                  />
+                  {pages
+                    .slice(pages.indexOf(minPage), pages.indexOf(maxPage + 1))
+                    .map((page) => (
+                      page === currentPage ? (
+                        <button
+                          key={page}
+                          className="pagination__item"
+                          onClick={() => setCurrentPage(page)}
+                          style={{ outline: '4px solid #BFD962' }}
+                        >
+                          {page}
+                        </button>
+                      ) : (
+                        <button
+                          key={page}
+                          className="pagination__item"
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </button>
+                      )
+                    ))}
+                  <Button
+                    title="Next"
+                    bgColor="#D99C52"
+                    onClick={() => {
+                      setMinPage(minPage + 10);
+                      setMaxPage(maxPage + 10);
+                    }}
+                    disabled={maxPage > pages.length}
+                  />
                 </div>
               )}
             </div>
