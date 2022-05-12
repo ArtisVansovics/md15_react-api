@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 import { Character } from '../../Models/CharacterModel';
-import { Info } from '../../Models/InfoModel';
 import Button from '../../components/Button/Button';
 import CharacterCard from '../../components/CharacterCard/CharacterCard';
 import Loader from '../../components/Loader/Loader';
+import styles from './CharactersPage.module.scss';
 
 const CharactersPage = () => {
   const [characters, setCharacters] = useState<Character[]>();
-  const [info, setInfo] = useState<Info>();
-  const [filteredCharacters, setFilteredCharacters] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>();
-  const [loading, setLoading] = useState<boolean>(false);
+  const [statusFilter, setStatusFilter] = useState<string>('');
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchParams, setSearchParams] = useSearchParams('');
   const [pageCount, setPageCount] = useState<number>();
+  const [pages, setPages] = useState<number[]>();
   const [minPage, setMinPage] = useState<number>(1);
   const [maxPage, setMaxPage] = useState<number>(10);
+  const [errorMessage, setErrorMessage] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const buttons = [
     {
       title: 'All',
       bgColor: '#11AEBF',
       onClick: () => {
-        setFilteredCharacters('');
+        setSearchParams('');
+        setStatusFilter('');
         setCurrentPage(1);
         setMinPage(1);
         setMaxPage(10);
@@ -32,7 +35,8 @@ const CharactersPage = () => {
       title: 'Alive',
       bgColor: '#BFD962',
       onClick: () => {
-        setFilteredCharacters('alive');
+        setSearchParams({ status: 'alive' });
+        setStatusFilter('alive');
         setCurrentPage(1);
         setMinPage(1);
         setMaxPage(10);
@@ -42,7 +46,8 @@ const CharactersPage = () => {
       title: 'Dead',
       bgColor: '#D94E4E',
       onClick: () => {
-        setFilteredCharacters('dead');
+        setSearchParams({ status: 'dead' });
+        setStatusFilter('dead');
         setCurrentPage(1);
         setMinPage(1);
         setMaxPage(10);
@@ -52,7 +57,8 @@ const CharactersPage = () => {
       title: 'Unknown',
       bgColor: '#BFB378',
       onClick: () => {
-        setFilteredCharacters('unknown');
+        setSearchParams({ status: 'unknown' });
+        setStatusFilter('unknown');
         setCurrentPage(1);
         setMinPage(1);
         setMaxPage(10);
@@ -64,9 +70,10 @@ const CharactersPage = () => {
     setLoading(true);
     try {
       const response = await axios
-        .get(`https://rickandmortyapi.com/api/character/?page=${currentPage.toString()}&status=${filteredCharacters}`);
+        .get(`https://rickandmortyapi.com/api/character/?${searchParams}`);
+      // eslint-disable-next-line max-len
+        // .get(`https://rickandmortyapi.com/api/character/?page=${currentPage.toString()}&status=${statusFilter}`);
       setCharacters(response.data.results);
-      setInfo(response.data.info);
       setPageCount(response.data.info.pages);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -82,9 +89,11 @@ const CharactersPage = () => {
 
   useEffect(() => {
     getCharacters().then();
-  }, [filteredCharacters, currentPage]);
-
-  const pages = Array.from(Array(pageCount).keys()).map((page) => page + 1);
+    if (pageCount) {
+      const pagesArr = Array.from(Array(pageCount + 1).keys()).map((page) => page + 1);
+      setPages(pagesArr);
+    }
+  }, [searchParams, pageCount]);
 
   return (
     <div className="page">
@@ -106,50 +115,54 @@ const CharactersPage = () => {
         <div className="row">
           <div className="col-xs-12">
             <div className="box">
-              {info && (
-                <div className="pagination">
-                  <Button
-                    title="Prev"
-                    bgColor="#D99C52"
-                    onClick={() => {
-                      setMinPage(minPage - 10);
-                      setMaxPage(maxPage - 10);
-                    }}
-                    disabled={minPage < 10}
-                  />
-                  {pages
-                    .slice(pages.indexOf(minPage), pages.indexOf(maxPage + 1))
-                    .map((page) => (
-                      page === currentPage ? (
-                        <button
-                          key={page}
-                          className="pagination__item"
-                          onClick={() => setCurrentPage(page)}
-                          style={{ outline: '4px solid #BFD962' }}
-                        >
-                          {page}
-                        </button>
-                      ) : (
-                        <button
-                          key={page}
-                          className="pagination__item"
-                          onClick={() => setCurrentPage(page)}
-                        >
-                          {page}
-                        </button>
-                      )
-                    ))}
-                  <Button
-                    title="Next"
-                    bgColor="#D99C52"
-                    onClick={() => {
-                      setMinPage(minPage + 10);
-                      setMaxPage(maxPage + 10);
-                    }}
-                    disabled={maxPage > pages.length}
-                  />
-                </div>
-              )}
+              <div className="pagination">
+                <Button
+                  title="Prev"
+                  bgColor="#D99C52"
+                  onClick={() => {
+                    setMinPage(minPage - 10);
+                    setMaxPage(maxPage - 10);
+                  }}
+                  disabled={minPage < 10}
+                />
+                {pages && pages
+                  .slice(pages.indexOf(minPage), pages.indexOf(maxPage + 1))
+                  .map((page) => (
+                    page === currentPage ? (
+                      <button
+                        key={page}
+                        className="pagination__item"
+                        onClick={() => {
+                          setSearchParams({ page: page.toString(), status: statusFilter });
+                          setCurrentPage(page);
+                        }}
+                        style={{ outline: '4px solid #BFD962' }}
+                      >
+                        {page}
+                      </button>
+                    ) : (
+                      <button
+                        key={page}
+                        className="pagination__item"
+                        onClick={() => {
+                          setSearchParams({ page: page.toString(), status: statusFilter });
+                          setCurrentPage(page);
+                        }}
+                      >
+                        {page}
+                      </button>
+                    )
+                  ))}
+                <Button
+                  title="Next"
+                  bgColor="#D99C52"
+                  onClick={() => {
+                    setMinPage(minPage + 10);
+                    setMaxPage(maxPage + 10);
+                  }}
+                  disabled={pages && maxPage > pages.length}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -176,7 +189,7 @@ const CharactersPage = () => {
           </div>
         </div>
       </div>
-      {errorMessage && <span>{errorMessage}</span>}
+      {errorMessage && <span className={styles.error}>{errorMessage}</span>}
     </div>
   );
 };
