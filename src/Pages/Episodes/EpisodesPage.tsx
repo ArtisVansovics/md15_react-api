@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSearchParams } from 'react-router-dom';
 import { Episode } from '../../Models/EpisodeModel';
 import Button from '../../components/Button/Button';
 import Loader from '../../components/Loader/Loader';
@@ -7,7 +8,7 @@ import EpisodeCard from '../../components/EpisodeCard/EpisodeCard';
 
 const EpisodesPage = () => {
   const [episodes, setEpisodes] = useState<Episode[]>();
-  const [episodeSearch, setEpisodeSearch] = useState<string>('');
+  const [searchParams, setSearchParams] = useSearchParams('');
   const [searchValue, setSearchValue] = useState<string>('');
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -16,7 +17,7 @@ const EpisodesPage = () => {
   const getEpisodes = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://rickandmortyapi.com/api/episode/?name=${episodeSearch}`);
+      const response = await axios.get(`https://rickandmortyapi.com/api/episode/?${searchParams}`);
       setEpisodes(response.data.results);
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -36,7 +37,7 @@ const EpisodesPage = () => {
 
   useEffect(() => {
     getEpisodes().then();
-  }, [episodeSearch]);
+  }, [searchParams]);
 
   useEffect(() => {
     if (searchRef.current) {
@@ -49,12 +50,12 @@ const EpisodesPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-xs-12">
-            <div className="box">
+            <div className="box box--row">
               <form
                 className="search-form"
                 onSubmit={(e) => {
                   e.preventDefault();
-                  setEpisodeSearch(searchValue);
+                  setSearchParams({ name: searchValue });
                   setSearchValue('');
                 }}
               >
@@ -73,6 +74,11 @@ const EpisodesPage = () => {
                   disabled={searchValue === ''}
                 />
               </form>
+              <Button
+                title="Reset"
+                bgColor="#11aebf"
+                onClick={() => setSearchParams('')}
+              />
             </div>
           </div>
         </div>
