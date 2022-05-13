@@ -108,4 +108,5 @@ const EpisodesPage = () => {
     </div>
   );
 };
+
 export default EpisodesPage;
