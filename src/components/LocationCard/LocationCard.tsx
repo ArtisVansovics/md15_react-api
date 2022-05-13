@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import './LocationCard.scss';
 import { useNavigate } from 'react-router-dom';
+import styles from './LocationCard.module.scss';
 import Button from '../Button/Button';
 
 type LocationCardProps = {
@@ -17,11 +17,11 @@ const LocationCard:FC<LocationCardProps> = (
   const navigate = useNavigate();
 
   return (
-    <div className="location-card">
-      <h3 className="location-card__title">
+    <div className={styles.card}>
+      <h3 className={styles.card__title}>
         {name}
       </h3>
-      <h4 className="location-card__sub-title">
+      <h4 className={styles['card__sub-title']}>
         {`Location type: ${type}`}
       </h4>
       <Button

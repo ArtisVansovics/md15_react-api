@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import './Button.scss';
+import styles from './Button.module.scss';
 
 type ButtonProps = {
   title: string;
@@ -12,7 +12,7 @@ const Button:FC<ButtonProps> = ({
   title, bgColor, onClick, disabled,
 }) => (
   <button
-    className="button"
+    className={styles.button}
     style={{ backgroundColor: bgColor }}
     onClick={onClick}
     disabled={disabled}

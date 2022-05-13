@@ -1,4 +1,4 @@
-.character-card {
+.card {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -9,14 +9,14 @@
   box-shadow: inset #D99C52 6px -4px 10px, inset #D99C52 -6px 4px 10px;
 }
 
-.character-card__title {
+.card__title {
   color: #11AEBF;
   font-weight: 600;
   font-size: 22px;
   margin-bottom: 20px;
 }
 
-.character-card__img {
+.card__img {
   width: 50%;
   border-radius: 50%;
   border: 4px solid #F2B199;

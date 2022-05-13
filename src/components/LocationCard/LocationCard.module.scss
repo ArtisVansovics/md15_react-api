@@ -1,4 +1,4 @@
-.location-card {
+.card {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
@@ -10,14 +10,14 @@
   outline: 3px solid #F2B199;
 }
 
-.location-card__title {
+.card__title {
   color: #F2B199;
   font-weight: 600;
   font-size: 25px;
   text-align: center;
 }
 
-.location-card__sub-title {
+.card__sub-title {
   color: #BFD962;
   font-weight: 500;
   font-size: 20px;

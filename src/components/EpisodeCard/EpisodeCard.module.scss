@@ -1,4 +1,4 @@
-.episode-card {
+.card {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
@@ -9,7 +9,7 @@
   padding: 20px;
 }
 
-.episode-card__title {
+.card__title {
   color: #BFD962;
   font-weight: 600;
   font-size: 22px;

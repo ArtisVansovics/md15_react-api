@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import './CharacterCard.scss';
 import { useNavigate } from 'react-router-dom';
+import styles from './CharacterCard.module.scss';
 import Button from '../Button/Button';
 
 type CharacterCardProps = {
@@ -19,14 +19,14 @@ const CharacterCard:FC<CharacterCardProps> = (
 
   return (
     <div
-      className={`character-card ${status.toLowerCase()}`}
+      className={`${styles.card} ${styles[`${status.toLowerCase()}`]}`}
     >
       <img
-        className="character-card__img"
+        className={styles.card__img}
         src={image}
         alt={name}
       />
-      <h3 className="character-card__title">
+      <h3 className={styles.card__title}>
         {name}
       </h3>
       <Button

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import './EpisodeCard.scss';
 import { useNavigate } from 'react-router-dom';
+import styles from './EpisodeCard.module.scss';
 import Button from '../Button/Button';
 
 type EpisodeCardProps = {
@@ -17,8 +17,8 @@ const EpisodeCard:FC<EpisodeCardProps> = (
   const navigate = useNavigate();
 
   return (
-    <div className="episode-card">
-      <h3 className="episode-card__title">
+    <div className={styles.card}>
+      <h3 className={styles.card__title}>
         {`${episode}: ${name}`}
       </h3>
       <Button

@@ -69,10 +69,9 @@ const CharactersPage = () => {
   const getCharacters = async () => {
     setLoading(true);
     try {
-      const response = await axios
-        .get(`https://rickandmortyapi.com/api/character/?${searchParams}`);
+      const response = await axios.get(`https://rickandmortyapi.com/api/character/?${searchParams}`);
       // eslint-disable-next-line max-len
-        // .get(`https://rickandmortyapi.com/api/character/?page=${currentPage.toString()}&status=${statusFilter}`);
+      // .get(`https://rickandmortyapi.com/api/character/?page=${currentPage.toString()}&status=${statusFilter}`);
       setCharacters(response.data.results);
       setPageCount(response.data.info.pages);
     } catch (error) {
